@@ -1,0 +1,12 @@
+John Doe
+I am an experienced programmer looking for a job in technology.
+
+Things I have done:
+- Worked on computer systems and fixed bugs
+- Helped the team with daily tasks
+- Handled some servers and software
+- Looked at web pages and databases
+- Good team player and hard worker
+
+Skills:
+Computers, Windows, Office, Programming, Communication

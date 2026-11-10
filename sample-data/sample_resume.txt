@@ -1,0 +1,37 @@
+Alex Morgan
+alex.morgan@cloudtechsolutions.com | (555) 321-9876 | Austin, TX
+LinkedIn: linkedin.com/in/alex-morgan-cloud | GitHub: github.com/alex-cloud-dev
+
+PROFESSIONAL SUMMARY
+Senior Cloud & DevOps Engineer with 5+ years of experience designing, deploying, and managing scalable multi-cloud infrastructure across AWS and Linux environments. Proven track record of reducing infrastructure costs by 32%, orchestrating CI/CD pipelines with GitHub Actions and Docker, and maintaining 99.99% uptime for microservices architectures.
+
+TECHNICAL SKILLS
+- Cloud Platforms: AWS (EC2, S3, Lambda, DynamoDB, RDS, IAM, CloudWatch, ECS, EKS, Route 53, CloudFront), Terraform
+- Containers & Orchestration: Docker, Kubernetes, Helm, Microservices, Nginx
+- CI/CD & DevOps: GitHub Actions, Jenkins, Git, Linux, Ubuntu, Ansible, Prometheus, Grafana
+- Programming & Scripting: Python, Node.js, JavaScript, Bash, SQL, REST API
+- Databases: PostgreSQL, MongoDB, Redis, MySQL
+- Methodologies: Agile, Scrum, System Design, Unit Testing, Code Review
+
+PROFESSIONAL EXPERIENCE
+Senior Cloud Infrastructure Engineer | Nexus Cloud Systems, Austin, TX | 2022 - Present
+- Architected and deployed production infrastructure on AWS utilizing EC2, S3, RDS PostgreSQL, and Lambda, supporting over 250,000 daily active users.
+- Automated deployment workflows using Terraform and GitHub Actions, decreasing release cycle times by 45%.
+- Implemented real-time telemetry and alerting via Prometheus, Grafana, and AWS CloudWatch, reducing incident mean-time-to-resolution (MTTR) by 38%.
+- Optimized AWS resource allocation and auto-scaling policies, yielding $85,000 in annual cloud expenditure savings.
+- Configured Nginx reverse proxies with SSL termination and rate limiting, mitigating DDoS attempts and boosting API response times to under 120ms.
+
+DevOps & Cloud Engineer | Vertex Analytics, Dallas, TX | 2020 - 2022
+- Spearheaded migration of on-premise monolithic applications to containerized Docker microservices on AWS ECS, improving application scalability by 300%.
+- Engineered automated CI/CD test suites with Jest and PyTest, achieving 88% unit testing code coverage.
+- Managed DynamoDB and Redis caching layers, cutting database read latency from 45ms to 6ms.
+- Collaborated in cross-functional Agile sprint teams with daily standups and weekly sprint reviews.
+
+EDUCATION
+Bachelor of Science in Computer Science
+University of Texas at Austin, Austin, TX | Graduated 2020
+
+CERTIFICATIONS
+- AWS Certified Solutions Architect - Associate
+- Certified Kubernetes Administrator (CKA)
+- HashiCorp Certified: Terraform Associate

@@ -1,0 +1,27 @@
+Job Title: Cloud Infrastructure & DevOps Engineer
+Company: Global Cloud Technologies Inc.
+Location: Remote / Hybrid
+
+Job Overview:
+We are seeking a skilled Cloud & DevOps Engineer to design, deploy, and maintain robust, scalable infrastructure on Amazon Web Services (AWS). In this role, you will lead the implementation of automated CI/CD pipelines, containerized deployments, and cloud monitoring solutions to support high-traffic microservices applications.
+
+Key Responsibilities:
+- Design, deploy, and administer cloud infrastructure on AWS utilizing services including EC2, S3, RDS, Lambda, IAM, and CloudWatch.
+- Build and maintain continuous integration and continuous deployment (CI/CD) pipelines using GitHub Actions or Jenkins.
+- Containerize application workloads using Docker and manage container orchestration with Kubernetes or AWS ECS.
+- Write modular Infrastructure as Code (IaC) utilizing Terraform or CloudFormation.
+- Configure web servers and reverse proxies such as Nginx for SSL termination, load balancing, and traffic routing.
+- Collaborate with software development teams using Agile and Scrum methodologies to streamline deployments and code reviews.
+- Establish comprehensive system monitoring, logging, and alerting using Prometheus, Grafana, and AWS CloudWatch.
+- Optimize cloud architecture for high availability, fault tolerance, security, and cost efficiency.
+
+Required Qualifications & Skills:
+- Bachelor's degree in Computer Science, Software Engineering, or equivalent practical experience.
+- 3+ years of hands-on experience managing infrastructure in Amazon Web Services (AWS).
+- Strong proficiency with Linux administration (Ubuntu, Amazon Linux) and shell scripting (Bash, Python).
+- Demonstrated experience with Docker containerization and Kubernetes cluster management.
+- Hands-on experience with Terraform for automated cloud provisioning.
+- Proficiency in relational and NoSQL databases such as PostgreSQL, MySQL, and Redis.
+- Solid understanding of REST API architectures and microservices design patterns.
+- Strong problem-solving abilities and communication skills.
+- Relevant AWS certifications (AWS Certified Solutions Architect or SysOps Administrator) are strongly preferred.

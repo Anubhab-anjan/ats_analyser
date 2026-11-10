@@ -1,0 +1,30 @@
+[Unit]
+Description=AI ATS Resume Analyzer Application
+After=network.target
+
+[Service]
+Type=simple
+User=ec2-user
+WorkingDirectory=/home/ec2-user/ai-ats-resume-analyzer
+ExecStart=/usr/bin/node server.js
+Restart=always
+RestartSec=5
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=ats-app
+
+# Environment Variables
+Environment=NODE_ENV=production
+Environment=PORT=3000
+Environment=AWS_REGION=us-east-1
+# AWS_BUCKET_NAME can be set here or retrieved from /etc/environment
+# Environment=AWS_BUCKET_NAME=your-bucket-name
+
+# Security Sandboxing for Linux systemd
+NoNewPrivileges=true
+ProtectSystem=full
+ProtectHome=read-only
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

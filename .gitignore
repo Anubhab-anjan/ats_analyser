@@ -1,0 +1,19 @@
+# Node dependencies
+node_modules/
+package-lock.json
+
+# Environment variables & secrets
+.env
+*.pem
+*.key
+*.pkcs12
+
+# Local data uploads & reports
+uploads/*
+!uploads/.gitkeep
+reports/*
+!reports/.gitkeep
+
+# System files
+.DS_Store
+Thumbs.db

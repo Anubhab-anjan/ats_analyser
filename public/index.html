@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cloud AI Resume Analyzer & ATS Scoring System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Top Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="brand">
+        <span class="brand-badge">AWS Cloud Project</span>
+        <span class="brand-title">AI ATS Resume Scorer</span>
+      </div>
+      <div class="nav-actions">
+        <div class="system-status" id="systemStatus">
+          <span class="status-indicator" id="statusIndicator"></span>
+          <span class="status-text" id="statusText">Checking AWS Connectivity...</span>
+        </div>
+        <button type="button" class="btn btn-secondary" id="historyToggleBtn">Past Scans</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="main-container">
+    <!-- Introduction Section -->
+    <section class="hero-section">
+      <h1>Automated Applicant Tracking System (ATS) Resume Evaluation</h1>
+      <p class="hero-desc">
+        Cloud-native resume parser and semantic scoring engine deployed on Amazon Web Services.
+        Evaluates keyword coverage, section structure, action verb impact, and quantitative achievements.
+      </p>
+    </section>
+
+    <!-- Input Form Card -->
+    <section class="card upload-card">
+      <div class="card-header">
+        <h2>Submit Resume and Target Job Description</h2>
+        <span class="card-subtitle">Supported formats: PDF, DOCX, TXT (Maximum file size: 10MB)</span>
+      </div>
+
+      <form id="analyzeForm">
+        <div class="form-grid">
+          <!-- Resume Upload Box -->
+          <div class="form-group">
+            <label for="resumeFile" class="form-label">
+              <strong>1. Upload Resume Document</strong>
+            </label>
+            <div class="file-dropzone" id="dropzone">
+              <input type="file" id="resumeFile" name="resume" accept=".pdf,.docx,.txt" required class="file-input">
+              <div class="dropzone-content" id="dropzoneContent">
+                <span class="dropzone-title">Click to browse or drag and drop resume here</span>
+                <span class="dropzone-hint">PDF, DOCX, or TXT file</span>
+              </div>
+              <div class="file-selected-info" id="fileSelectedInfo" style="display: none;">
+                <span class="file-name" id="selectedFileName"></span>
+                <span class="file-size" id="selectedFileSize"></span>
+                <button type="button" class="btn-text" id="clearFileBtn">Remove File</button>
+              </div>
+            </div>
+
+            <!-- Quick Sample Resume Selector -->
+            <div class="sample-actions">
+              <span class="sample-label">Or load sample resume:</span>
+              <button type="button" class="btn-chip" id="loadStrongResumeBtn">Cloud Engineer (High Score)</button>
+              <button type="button" class="btn-chip" id="loadPoorResumeBtn">Unformatted (Low Score)</button>
+            </div>
+          </div>
+
+          <!-- Job Description Box -->
+          <div class="form-group">
+            <div class="jd-header">
+              <label for="jobDescription" class="form-label">
+                <strong>2. Target Job Description</strong>
+              </label>
+              <button type="button" class="btn-chip" id="loadSampleJdBtn">Load Sample Cloud Engineer JD</button>
+            </div>
+            <textarea
+              id="jobDescription"
+              name="jobDescription"
+              rows="10"
+              class="form-textarea"
+              placeholder="Paste the target job description requirements, qualifications, and responsibilities here..."
+              required
+            ></textarea>
+            <div class="word-counter">
+              <span id="jdWordCount">0 words</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Optional Candidate Name -->
+        <div class="form-row-metadata">
+          <div class="metadata-field">
+            <label for="candidateName" class="form-label">Candidate Name (Optional Override)</label>
+            <input type="text" id="candidateName" name="candidateName" class="form-input" placeholder="Extracted automatically if left blank">
+          </div>
+          <div class="submit-action">
+            <button type="submit" class="btn btn-primary" id="submitBtn">
+              Analyze and Compute ATS Score
+            </button>
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <!-- Loading State -->
+    <div class="loading-container" id="loadingContainer" style="display: none;">
+      <div class="spinner"></div>
+      <p class="loading-title">Parsing Document and Computing Semantic Vectors...</p>
+      <p class="loading-subtitle">Extracting skills, computing TF-IDF similarity, and validating ATS compliance</p>
+    </div>
+
+    <!-- Error Alert Box -->
+    <div class="alert alert-danger" id="errorAlert" style="display: none;">
+      <span class="alert-title">Analysis Failed:</span>
+      <span class="alert-message" id="errorMessage"></span>
+    </div>
+
+    <!-- Results Section -->
+    <section class="results-section" id="resultsSection" style="display: none;">
+      <!-- Overall Score Summary Banner -->
+      <div class="card score-summary-card">
+        <div class="score-summary-grid">
+          <!-- Circular Score Display -->
+          <div class="score-dial-column">
+            <div class="score-dial" id="scoreDial">
+              <div class="score-value" id="overallScoreVal">0</div>
+              <div class="score-scale">/ 100</div>
+            </div>
+            <div class="score-badge" id="ratingBadge">Evaluating...</div>
+          </div>
+
+          <!-- Executive Summary Info -->
+          <div class="score-meta-column">
+            <div class="candidate-header">
+              <h2 id="resultCandidateName">Candidate Name</h2>
+              <span class="document-badge" id="resultDocFormat">PDF</span>
+            </div>
+            <p class="readiness-statement" id="resultReadinessStatement">Readiness statement</p>
+
+            <div class="meta-stats-grid">
+              <div class="meta-stat-item">
+                <span class="stat-label">Document Length:</span>
+                <span class="stat-value" id="resultWordCount">0 words</span>
+              </div>
+              <div class="meta-stat-item">
+                <span class="stat-label">Identified Skills:</span>
+                <span class="stat-value" id="resultCandidateSkillCount">0</span>
+              </div>
+              <div class="meta-stat-item">
+                <span class="stat-label">JD Skill Match Rate:</span>
+                <span class="stat-value" id="resultSkillMatchRate">0%</span>
+              </div>
+              <div class="meta-stat-item">
+                <span class="stat-label">Storage Backend:</span>
+                <span class="stat-value" id="resultStorageType">AWS S3</span>
+              </div>
+            </div>
+
+            <div class="export-actions">
+              <button type="button" class="btn btn-secondary btn-sm" id="printReportBtn">Print / Save as PDF</button>
+              <button type="button" class="btn btn-secondary btn-sm" id="exportJsonBtn">Export Raw JSON</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Metric Breakdown Progress Bars -->
+        <div class="breakdown-grid">
+          <div class="breakdown-item">
+            <div class="breakdown-header">
+              <span>Required Skills Match (35% weight)</span>
+              <span class="breakdown-val" id="barSkillScore">0/100</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" id="fillSkillScore" style="width: 0%;"></div>
+            </div>
+          </div>
+
+          <div class="breakdown-item">
+            <div class="breakdown-header">
+              <span>Semantic & Content Relevance (25% weight)</span>
+              <span class="breakdown-val" id="barSemanticScore">0/100</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" id="fillSemanticScore" style="width: 0%;"></div>
+            </div>
+          </div>
+
+          <div class="breakdown-item">
+            <div class="breakdown-header">
+              <span>Quantifiable Impact & Action Verbs (20% weight)</span>
+              <span class="breakdown-val" id="barImpactScore">0/100</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" id="fillImpactScore" style="width: 0%;"></div>
+            </div>
+          </div>
+
+          <div class="breakdown-item">
+            <div class="breakdown-header">
+              <span>ATS Formatting & Section Structure (20% weight)</span>
+              <span class="breakdown-val" id="barStructureScore">0/100</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" id="fillStructureScore" style="width: 0%;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Actionable Recommendations Card -->
+      <div class="card recommendations-card">
+        <div class="card-header">
+          <h3>ATS Optimization Recommendations</h3>
+          <span class="card-subtitle">Key steps to increase resume score and interview callback rates</span>
+        </div>
+        <div class="recommendations-list" id="recommendationsList">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+
+      <!-- Skills Analysis Grid (Matched vs Missing) -->
+      <div class="two-column-grid">
+        <!-- Matched Skills -->
+        <div class="card">
+          <div class="card-header">
+            <h3>Matched Skills from Job Description</h3>
+            <span class="card-badge badge-success" id="matchedCountBadge">0 Matched</span>
+          </div>
+          <div class="skills-tag-cloud" id="matchedSkillsList">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+
+        <!-- Missing Skills -->
+        <div class="card">
+          <div class="card-header">
+            <h3>Missing Target Skills</h3>
+            <span class="card-badge badge-warning" id="missingCountBadge">0 Missing</span>
+          </div>
+          <p class="card-note">Keywords present in job requirements but not found in the resume:</p>
+          <div class="skills-tag-cloud" id="missingSkillsList">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Deep Dive Tabs: Audit Checklist, Action Verbs, Contact Info -->
+      <div class="card audit-card">
+        <div class="card-header">
+          <h3>ATS Compliance and Document Audit</h3>
+        </div>
+
+        <div class="audit-columns">
+          <!-- Format Checklist -->
+          <div class="audit-column">
+            <h4>Formatting and Structural Checks</h4>
+            <ul class="checklist" id="formatChecklist">
+              <!-- Populated dynamically -->
+            </ul>
+          </div>
+
+          <!-- Action Verbs & Metrics -->
+          <div class="audit-column">
+            <h4>Measurable Impact & Action Verbs</h4>
+            <div class="impact-stats">
+              <div class="impact-stat-box">
+                <span class="stat-number" id="distinctActionVerbsCount">0</span>
+                <span class="stat-caption">Distinct Action Verbs</span>
+              </div>
+              <div class="impact-stat-box">
+                <span class="stat-number" id="quantifiableOutcomesCount">0</span>
+                <span class="stat-caption">Quantifiable Metrics</span>
+              </div>
+            </div>
+
+            <div class="section-group">
+              <h5>Detected Action Verbs</h5>
+              <div class="skills-tag-cloud verbs-cloud" id="verbsList"></div>
+            </div>
+
+            <div class="section-group">
+              <h5>Sample Quantifiable Statements</h5>
+              <ul class="bullet-list" id="metricsList"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Past Scans Drawer / Modal -->
+    <aside class="history-drawer" id="historyDrawer">
+      <div class="drawer-header">
+        <h3>Previous Scans History</h3>
+        <button type="button" class="btn-close" id="closeHistoryBtn">&times;</button>
+      </div>
+      <div class="drawer-content" id="historyList">
+        <p class="drawer-empty">No scan history recorded in current session.</p>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <p>Cloud Computing Final Project Submission</p>
+      <p class="footer-sub">Architecture: AWS EC2 (Compute) | Amazon S3 (Object Storage) | AWS IAM (Security) | CloudWatch (Monitoring)</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
