@@ -1,9 +1,10 @@
 # ats_analyser — Cloud-Native AI Resume Analysis & ATS Scoring Platform
 
 A 7th-semester Cloud Computing project: a resume analysis and ATS scoring platform hosted on Amazon EC2 behind an Nginx reverse proxy, with a Node.js/Express backend and Amazon S3 storage secured through an IAM role.
+## Project links
 
-**Live website:** http://54.226.121.91/
-
+- **Live website:** http://54.226.121.91/
+- **Video presentation and project report:** https://drive.google.com/drive/folders/1GafRWxoB_t808R6ddWbOxmfORSIuih_b
 ## Features
 
 - Upload PDF, DOCX or TXT resumes (up to 10 MB) and paste or load a job description.
@@ -141,9 +142,6 @@ curl http://localhost:3000/api/health
 | Diyal Mandal | B123055 | Backend & AI Engine Lead: PDF/DOCX parsers, NLP tokenization, TF-IDF cosine similarity, weighted scoring engine, AWS SDK v3 integration |
 | G Vanessa Reddy | B123058 | Frontend & Evaluation Lead: UI dashboard, progress visualizations, benchmarking, sample testing, video presentation |
 
-## Project links
 
-- **Live website:** http://54.226.121.91/
-- **Video presentation and project report:** https://drive.google.com/drive/folders/1GafRWxoB_t808R6ddWbOxmfORSIuih_b
 
 **Course:** Cloud Computing · **Semester:** 7th · **Cloud provider:** AWS
