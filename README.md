@@ -14,7 +14,7 @@ An enterprise-grade Applicant Tracking System (ATS) resume parser and semantic s
 | Diyal Mandal | B123055 | Backend & AI Engine Lead |
 | G Vanessa Reddy | B123058 | Frontend & Evaluation Lead |
  
-> Note: the closing slide of the presentation lists the last two IDs as B12055 and B12058, while the title slide lists B123055 and B123058. This README uses the title-slide IDs. Please confirm the correct ones.
+
  
 ---
  
