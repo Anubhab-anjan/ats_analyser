@@ -75,7 +75,7 @@ ai_analysis/
 ├── uploads/                   # Local fallback storage for resumes
 ├── reports/                   # Local fallback storage for JSON reports
 ├── .gitignore
-└── README.m
+└── README.md
 ```
 
 ## Run locally
@@ -140,5 +140,10 @@ curl http://localhost:3000/api/health
 | Anubhab Anjan Kumar Malik | B123022 | Cloud & Infrastructure Lead: AWS EC2, S3, IAM roles, Security Groups, Nginx reverse proxy, systemd deployment |
 | Diyal Mandal | B123055 | Backend & AI Engine Lead: PDF/DOCX parsers, NLP tokenization, TF-IDF cosine similarity, weighted scoring engine, AWS SDK v3 integration |
 | G Vanessa Reddy | B123058 | Frontend & Evaluation Lead: UI dashboard, progress visualizations, benchmarking, sample testing, video presentation |
+
+## Project links
+
+- **Live website:** http://54.226.121.91/
+- **Video presentation and project report:** https://drive.google.com/drive/folders/1GafRWxoB_t808R6ddWbOxmfORSIuih_b
 
 **Course:** Cloud Computing · **Semester:** 7th · **Cloud provider:** AWS
