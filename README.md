@@ -74,11 +74,8 @@ ai_analysis/
 │   └── ec2-user-data.sh
 ├── uploads/                   # Local fallback storage for resumes
 ├── reports/                   # Local fallback storage for JSON reports
-├── AWS_DEPLOYMENT_GUIDE.md
-├── PROJECT_REPORT.md
-├── VIDEO_PRESENTATION_SCRIPT.md
 ├── .gitignore
-└── README.md
+└── README.m
 ```
 
 ## Run locally
